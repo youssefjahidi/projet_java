@@ -21,7 +21,7 @@ public class Van implements Car {
 	@Override
 	public boolean contact() {
 		for(Driver driver: drivers){
-			if(driver.getState() == "onduty"){
+			if(driver.getState().equals("onduty")){
 				return driver.contact();
 			}
 		}
