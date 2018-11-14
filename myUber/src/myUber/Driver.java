@@ -46,17 +46,18 @@ public class Driver {
 		System.out.println("Voulez vous accepter la course ?");	
 		Scanner sc = new Scanner(System.in);
 		String rep = sc.nextLine();
-		while(rep != "oui" && rep != "non")
+		while(rep != "oui" && rep != "non") {
+			System.out.println("Voulez vous accepter la course ?");
+			rep = sc.nextLine();
+		}
 		if (rep == "oui") {
 			return true;
 		} else if (rep =="non") {
 			return false;
 		}
-		else {
-			System.out.println("Veuilez répondre par oui ou non");
-			this.contact();
-		}
+
 		return false;
+		
 		
 	}
 	
