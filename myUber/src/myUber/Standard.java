@@ -54,5 +54,9 @@ public class Standard implements Car {
 	public int getnbplace() {
 		return this.nbplaces;
 	}
+	public static void initializeList() {
+		Standard.S_exist = new ArrayList<Standard>();
+	}
+
 
 }
