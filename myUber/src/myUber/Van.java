@@ -19,9 +19,16 @@ public class Van implements Car {
 		}
 
 	@Override
-	public void contact() {
-		// TODO Auto-generated method stub
+	public boolean contact() {
+		for(Driver driver: drivers){
+			if(driver.getState() == "onduty"){
+				return driver.contact();
+			}
+		}
+		return false;
+		
 	}
+	
 	public static void main(String[] args){
 		Van.initializeList();
 		Van V = new Van("earth");
