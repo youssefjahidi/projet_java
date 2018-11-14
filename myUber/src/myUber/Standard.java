@@ -20,8 +20,13 @@ public class Standard implements Car {
 
 
 	@Override
-	public void contact() {
-		// TODO Auto-generated method stub
+	public boolean contact() {
+		for(Driver driver: drivers){
+			if(driver.getState() == "onduty"){
+				return driver.contact();
+			}
+		}
+		return false;
 		
 	}
 
