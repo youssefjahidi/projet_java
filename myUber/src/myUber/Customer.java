@@ -7,7 +7,7 @@ public class Customer {
 	private int ID;
 	private String GPS;
 	private int creditcardnumb;
-	private ArrayList messagebox;
+	private ArrayList<String> messagebox;
 	private static int  IDact;
 	private int nbmess;
 	
@@ -16,7 +16,7 @@ public class Customer {
 		this.surname = surname;
 		this.GPS = GPS;
 		this.creditcardnumb = credicardnumb;
-		messagebox = new ArrayList();
+		messagebox = new ArrayList<String>();
 		this.ID = IDact;
 		IDact ++;
 		this.nbmess = 0;
@@ -46,10 +46,25 @@ public class Customer {
 		messagebox.add(message);
 		nbmess ++;
 	}
-	public void request(String destination) {
+	public void request(String destination) {		
+		Rides uberX = RidesFactory.createRides("UberX");
+		uberX.prepare(this, destination,0,Calcul.heure());
+		Rides uberVan = RidesFactory.createRides("UberVan");
+		uberVan.prepare(this, destination,0,Calcul.heure());
+		Rides uberPool = RidesFactory.createRides("UberPool");
+		uberPool.prepare(this, destination,0,Calcul.heure());
+		Rides uberBlack = RidesFactory.createRides("UberBlack");
+		uberBlack.prepare(this, destination,0,Calcul.heure());
 		
+		UberVisitor visitor = new ConcreteUberVisitor();
+		System.out.println( "UberX : " + uberX.accept(visitor) +"\n" + 
+							"UberVan : " + uberVan.accept(visitor) +"\n" +
+							"UberPool : " + uberPool.accept(visitor) +"\n" +
+							"UberBlack : " + uberBlack.accept(visitor) 
+				);
 	}
 	public void choose() {
 		
 	}
 }
+
