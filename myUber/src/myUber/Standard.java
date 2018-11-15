@@ -9,7 +9,9 @@ public class Standard implements Car {
 	private int nbplaces;
 	private String ID;
 	
-	Standard(String GPS) {
+
+	@Override
+	public void create(String GPS) {
 		this.GPS = GPS;
 		this.drivers = new ArrayList<Driver>();
 		this.nbplaces = 4;
@@ -22,7 +24,7 @@ public class Standard implements Car {
 	@Override
 	public boolean contact() {
 		for(Driver driver: drivers){
-			if(driver.getState() == "onduty"){
+			if(driver.getState().equals("onduty")){
 				return driver.contact();
 			}
 		}
@@ -54,6 +56,7 @@ public class Standard implements Car {
 	public int getnbplace() {
 		return this.nbplaces;
 	}
+	
 	public static void initializeList() {
 		Standard.S_exist = new ArrayList<Standard>();
 	}
