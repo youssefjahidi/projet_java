@@ -9,7 +9,8 @@ public class Berline implements Car {
 	private int nbplaces;
 	private String ID;
 	
-	public Berline(String GPS) {
+	@Override
+	public void create(String GPS) {
 		this.GPS = GPS;
 		this.drivers = new ArrayList<Driver>();
 		this.nbplaces = 4;
@@ -17,18 +18,17 @@ public class Berline implements Car {
 		ID = "Berline" + (String) Integer.toString(IDact);
 		B_exist.add(this);
 	}
-
+	
 	@Override
 	public boolean contact() {
 		for(Driver driver: drivers){
-			if(driver.getState() == "onduty"){
+			if(driver.getState().equals("onduty")){
 				return driver.contact();
 			}
 		}
 		return false;
 		
 	}
-
 	@Override
 	public void addDriver(Driver driver) {
 		this.drivers.add(driver);	
