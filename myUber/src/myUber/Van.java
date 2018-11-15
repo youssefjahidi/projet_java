@@ -9,14 +9,15 @@ public class Van implements Car {
 	private int nbplaces;
 	private String ID;
 	
-	public Van(String GPS) {
+	@Override
+	public void create(String GPS) {
 		this.GPS = GPS;
 		this.drivers = new ArrayList<Driver>();
 		this.nbplaces = 6;
 		IDact ++;
 		ID = "Van" + (String) Integer.toString(IDact);
 		V_exist.add(this);
-		}
+	}
 
 	@Override
 	public boolean contact() {
@@ -27,14 +28,6 @@ public class Van implements Car {
 		}
 		return false;
 		
-	}
-	
-	public static void main(String[] args){
-		Van.initializeList();
-		Van V = new Van("earth");
-		Van V2 = new Van("la");
-		V_exist.add(V);
-		System.out.println(V.getID() + V2.getID() + V2.getGPS());
 	}
 
 	@Override
@@ -62,3 +55,4 @@ public class Van implements Car {
 	}
 
 }
+
