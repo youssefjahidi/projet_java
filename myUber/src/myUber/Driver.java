@@ -28,21 +28,23 @@ public class Driver {
 	public String getState() {
 		return this.state;
 	}
-	public void setoffline(String St) {
+	public void setoffline() {
 		this.state = "offline";
 	}
-	public void setonduty(String St) {
+	public void setonduty() {
 		this.state = "onduty";
 	}
-	public void setonaride(String St) {
+	public void setonaride() {
 		this.state = "onaride";
 	}
-	public void setoffduty(String St) {
+	public void setoffduty() {
 		this.state = "offduty";
 	}
 	public boolean contact() {
 		// Il faudra ajouter dans la demande: le nombre de personne, la distance a 
 		// la personne, la distance de la course, le prix, le nom de la personne
+		// Il faudrait ajouter un timer pour que le conducteur ne puisse pas bloquer
+		// les réponses trop longtemps
 		System.out.println("Voulez vous accepter la course ?");	
 		Scanner sc = new Scanner(System.in);
 		String rep = sc.nextLine();
@@ -59,5 +61,3 @@ public class Driver {
 		
 	}
 	
-	
-}
