@@ -1,15 +1,23 @@
 package myUber;
 
-public class Rides {
-	private Customer customer;
-	private String destination;
-	private RState state;
+public interface Rides {
 	
-	Rides(Customer customer, String destination){
-		this.customer = customer;
-		this.destination = destination;
-		this.state = new RState();
-		this.state.setState("unconfirmed");
-	}
+	public String getdestination();
+	public Customer getcustomer();
+	public double getlength();
+	public String gettime();
+	
+	
+	public void setunconfirmed();
+	public void setconfirmed();
+	public void setongoing();
+	public void setcanceled();
+	public void setcompleted();
+	
+	public void request();
+
+	
+	public double accept(UberVisitor visitor);
+	public void prepare(Customer customer, String destination, int nbpersonne, String time);
 
 }
