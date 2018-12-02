@@ -1,14 +1,34 @@
 package Car;
+/**
+ * This class is a car factory. Keeps track of the id counter for each type of cars and instantiate
+ * cars.
+ * 
+ * @author Youssef Jahidi
+ * 
+ * @author Axel Vincent
+ */
 
 
 public class CarFactory {
-	
+	/**
+	 * id counter for standard cars
+	 */
 	private static int standardIdAct;
+	
+	/**
+	 * id counter for berlines
+	 */
 	private static int berlineIdAct;
+	
+	/**
+	 * id counter for van
+	 */
 	private static int vanIdAct;
 	
 	
-	
+	/**
+	 * instntiate a factory by setting the counters to 0.
+	 */
 	public CarFactory() {
 		 this.standardIdAct = 0;
 		 this.berlineIdAct = 0;
@@ -16,7 +36,11 @@ public class CarFactory {
 	}
 
 
-
+	/**
+	 *  car creation methods
+	 * @param CarType Can be standard, berline or van
+	 * @return a car object
+	 */
 	public static Car createCar(String CarType) {
 		if(CarType == null) {return null;}
 		if(CarType.equalsIgnoreCase("Standard")) {
