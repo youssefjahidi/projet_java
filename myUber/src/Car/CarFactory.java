@@ -1,6 +1,5 @@
 package Car;
 
-import myUber.*;
 
 public class CarFactory {
 	

@@ -5,10 +5,10 @@ import java.util.Date;
 import Car.Berline;
 import Car.CarFactory;
 import Car.Standard;
-import Car.Van;
+import Car.*;
 import Rides.Rides;
-import Users.Customer;
-import Users.Driver;
+import Users.Customer.*;
+import Users.Driver.*;
 
 public class runTest {
 

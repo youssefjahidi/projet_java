@@ -1,12 +1,12 @@
 package Rides;
 
-import Car.Standard;
+import Car.*;
 import Users.Customer;
 import Users.Driver;
 import myUber.Calcul;
 import myUber.UberVisitor;
 
-public class UberX implements Rides {
+/*public class UberX implements Rides {
 	private Customer customer;
 	private String destination;
 	private Driver driver;
@@ -121,3 +121,5 @@ public class UberX implements Rides {
 	}
 
 }
+
+*/

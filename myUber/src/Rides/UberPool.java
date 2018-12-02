@@ -1,6 +1,6 @@
 package Rides;
 
-import Car.Standard;
+import Car.*;
 import Users.Customer;
 import Users.Driver;
 import myUber.Calcul;
