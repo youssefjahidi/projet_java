@@ -18,9 +18,14 @@ public class Car {
 	private ArrayList<Driver> drivers;
 	
 	/** 
-	 * GPS Position of the car.
+	 * x coordinate of the car's GPS Position.
 	 */
-	private String gpsPosition;	
+	private float gpsPositionX;	
+	
+	/** 
+	 * y coordinate of the car's GPS Position.
+	 */
+	private float gpsPositionY;	
 	
 	/** 
 	 * Number of seats in the car.
@@ -42,22 +47,45 @@ public class Car {
 		this.nbSeats = nbSeats;
 		this.drivers = new ArrayList<Driver>();
 		this.id = id;
-		this.gpsPosition = "";
 	}
 	
-	/**
-	 * @return the gps Position
-	 */
-	public String getGpsPosition() {
-		return gpsPosition;
-	}
+	
 
 	/**
-	 * @param gpsPosition the gps Position to set
+	 * @return the gpsPositionX
 	 */
-	public void setGpsPosition(String gpsPosition) {
-		this.gpsPosition = gpsPosition;
+	public float getGpsPositionX() {
+		return gpsPositionX;
 	}
+
+
+
+	/**
+	 * @param gpsPositionX the gpsPositionX to set
+	 */
+	public void setGpsPositionX(float gpsPositionX) {
+		this.gpsPositionX = gpsPositionX;
+	}
+
+
+
+	/**
+	 * @return the gpsPositionY
+	 */
+	public float getGpsPositionY() {
+		return gpsPositionY;
+	}
+
+
+
+	/**
+	 * @param gpsPositionY the gpsPositionY to set
+	 */
+	public void setGpsPositionY(float gpsPositionY) {
+		this.gpsPositionY = gpsPositionY;
+	}
+
+
 
 	/**
 	 * @return the drivers list

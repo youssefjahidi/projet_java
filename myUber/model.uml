@@ -1,2 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_fpsQEPZTEeiUNPHbVYAk-A" name="RootElement"/>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ActionLanguage="http://www.omg.org/spec/ALF/20120827/ActionLanguage-Profile" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.omg.org/spec/ALF/20120827/ActionLanguage-Profile pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ">
+  <uml:Model xmi:id="_fpsQEPZTEeiUNPHbVYAk-A" name="RootElement">
+    <packagedElement xmi:type="uml:Interface" xmi:id="_Gu370PZUEeiUNPHbVYAk-A" name="Car" visibility="public">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_JvFvEPZVEeiUNPHbVYAk-A" name="ID">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_OmdtsPZVEeiUNPHbVYAk-A">
+          <body>+ ID : &lt;String> {unique}</body>
+        </ownedComment>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_X8W7gPZUEeiUNPHbVYAk-A" name="Van"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ZL7tAPZUEeiUNPHbVYAk-A" name="Standard"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ahhm8PZUEeiUNPHbVYAk-A" name="Berline"/>
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_IVI5kPZVEeiUNPHbVYAk-A" name="CarState"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_xGrZcPZVEeiUNPHbVYAk-A" name="CarFactory"/>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_OxsGQPZVEeiUNPHbVYAk-A">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_OxuigPZVEeiUNPHbVYAk-A" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#ActionLanguage"/>
+    </profileApplication>
+  </uml:Model>
+  <ActionLanguage:TextualRepresentation xmi:id="_Ox3FYPZVEeiUNPHbVYAk-A" base_Comment="_OmdtsPZVEeiUNPHbVYAk-A" language="org.eclipse.papyrus.uml.textedit.property.xtext.UmlProperty"/>
+</xmi:XMI>
