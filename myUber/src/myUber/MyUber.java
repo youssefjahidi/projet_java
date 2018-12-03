@@ -24,6 +24,30 @@ public class MyUber {
 		}
 		return null;
 	};*/
+	/*public void note(int note) {
+	this.note = (this.note*nbcourse +note) /(nbcourse+1);
+	nbcourse++;
+}*/
+	
+	/*public void choose() {
+	Scanner sc = new Scanner(System.in);
+	System.out.println("Quel type de course choisissez vous?");
+	String RidesType = sc.nextLine();
+	System.out.println("Combien êtes vous?");
+	int nbpersonne = sc.nextInt();
+	Rides ride = RidesFactory.createRides(RidesType);
+	ride.prepare(this,this.destination, nbpersonne);
+	ride.request();	
+	this.rides = ride;
+}
+public void cancel() {
+		this.rides.cancel();  dans myuber
+	}
+
+	public void note(int note) {
+		this.rides.note(note);  dans my uber
+*/
+	
 	
 	/**
 	 * Cars hashmap indexed by car id

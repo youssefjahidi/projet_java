@@ -4,40 +4,27 @@ import java.util.Scanner;
 
 import Rides.Rides;
 import Rides.RidesFactory;
-import myUber.ConcreteUberVisitor;
-import myUber.UberVisitor;
+//import myUber.ConcreteUberVisitor;
+//import myUber.UberVisitor;
 
-public class Customer {
-	private String name;
-	private String surname;
-	private int ID;
+public class Customer extends User{
+
 	private String GPS;
 	private int creditcardnumb;
 	private ArrayList<String> messagebox;
-	private static int  IDact;
+	private static int  idact;
 	private int nbmess;
 	private String destination;
-	private Rides rides;
 	
 	Customer(String name, String surname, String GPS, int credicardnumb){
-		this.name = name;
-		this.surname = surname;
+		super(name, surname, Customer.idact);
 		this.GPS = GPS;
 		this.creditcardnumb = credicardnumb;
 		messagebox = new ArrayList<String>();
-		this.ID = IDact;
-		IDact ++;
+		idact ++;
 		this.nbmess = 0;
 	}
-	public String getName() {
-		return this.name;
-	}
-	public String getSurname() {
-		return this.surname;
-	}
-	public int getID() {
-		return this.ID;
-	}
+
 	public String getGPS() {
 		return this.GPS;
 	}
@@ -57,7 +44,7 @@ public class Customer {
 		messagebox.add(message);
 		nbmess ++;
 	}
-	public void request(String destination) {	
+	/*public void request(String destination) {	
 		this.destination = destination;
 		Rides uberX = RidesFactory.createRides("UberX");
 		uberX.prepare(this, destination,0);
@@ -76,23 +63,13 @@ public class Customer {
 				);
 	}
 	
-	public void choose() {
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Quel type de course choisissez vous?");
-		String RidesType = sc.nextLine();
-		System.out.println("Combien êtes vous?");
-		int nbpersonne = sc.nextInt();
-		Rides ride = RidesFactory.createRides(RidesType);
-		ride.prepare(this,this.destination, nbpersonne);
-		ride.request();	
-		this.rides = ride;
-	}
+	
 	
 	public void cancel() {
-		this.rides.cancel();
+		this.rides.cancel();  dans myuber
 	}
 
 	public void note(int note) {
-		this.rides.note(note);
-	}
+		this.rides.note(note);  dans my uber
+	}*/
 }
