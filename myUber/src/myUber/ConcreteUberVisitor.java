@@ -1,6 +1,6 @@
 package myUber;
 
-import Rides.UberBlack;
+/*import Rides.UberBlack;
 import Rides.UberPool;
 import Rides.UberVan;
 import Rides.UberX;
@@ -92,4 +92,4 @@ public class ConcreteUberVisitor implements UberVisitor {
 		
 		return trafficRate*basicRate*length;
 	}
-}
+}*/
