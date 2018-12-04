@@ -46,6 +46,8 @@ public void cancel() {
 
 	public void note(int note) {
 		this.rides.note(note);  dans my uber
+
+public static ArrayList<String> BookOfRides = new ArrayList<String>();
 */
 	
 	

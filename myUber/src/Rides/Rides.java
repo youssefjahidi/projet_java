@@ -1,13 +1,14 @@
 package Rides;
 
+
+
 import java.util.ArrayList;
 
 import Users.Customer;
 import myUber.UberVisitor;
 
 public interface Rides {
-	public static ArrayList<String> BookOfRides = new ArrayList<String>();
-
+	
 	
 	public String getdestination();
 	public Customer getcustomer();
