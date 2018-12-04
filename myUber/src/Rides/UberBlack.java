@@ -6,68 +6,11 @@ import Users.Driver;
 import myUber.Calcul;
 import myUber.UberVisitor;
 
-public class UberBlack implements Rides {
-	private Customer customer;
-	private String destination;
-	private Driver driver;
-	private Car car;
-	private double length; // la longueur de la course
-	private int duration; // la durée de la course
-	private int nbpersonne;
-	private String state;
-	private String boardingtime;
-	private String landingtime;
+public class UberBlack extends Rides {
 
-	@Override
-	public void prepare(Customer customer, String destination, int nbpersonne) {
-		this.customer = customer;
-		this.destination = destination;
-		this.state = "unconfirmed";
-		this.nbpersonne = nbpersonne;
-		this.length = Calcul.distance(customer.getGPS(), destination);
-		this.duration = Calcul.durée(length);
-		}
+	public UberBlack(Customer customer, GPSPosition destination, int idAct){
+		super(customer, destination, uberBlack, "UberBlack" + (String) Integer.toString(idAct));
 
-	@Override
-	public String getdestination() {
-		return this.destination;
-	}
-
-	@Override
-	public Customer getcustomer() {
-		return this.customer;
-	}
-	@Override
-	public double getlength() {
-		return this.length;
-	}
-
-
-	@Override
-	public void setunconfirmed() {
-		this.state = "unconfirmed";
-	}
-
-	@Override
-	public void setconfirmed() {
-		this.state= "confirmed";
-	}
-
-	@Override
-	public void setongoing() {
-		this.state= "ongoing";
-	}
-
-	@Override
-	public void setcanceled() {
-		this.state = "canceled";
-		
-	}
-
-	@Override
-	public void setcompleted() {
-		this.state = "completed";	
-	}
 	
 	@Override
 	public double accept(UberVisitor visitor) {
