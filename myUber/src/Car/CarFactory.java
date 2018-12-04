@@ -13,17 +13,17 @@ public class CarFactory {
 	/**
 	 * id counter for standard cars
 	 */
-	private static int standardIdAct;
+	private int standardIdAct;
 	
 	/**
 	 * id counter for berlines
 	 */
-	private static int berlineIdAct;
+	private int berlineIdAct;
 	
 	/**
 	 * id counter for van
 	 */
-	private static int vanIdAct;
+	private int vanIdAct;
 	
 	
 	/**
@@ -41,7 +41,7 @@ public class CarFactory {
 	 * @param CarType Can be standard, berline or van
 	 * @return a car object
 	 */
-	public static Car createCar(String CarType) {
+	public Car createCar(String CarType) {
 		if(CarType == null) {return null;}
 		if(CarType.equalsIgnoreCase("Standard")) {
 			standardIdAct++;
