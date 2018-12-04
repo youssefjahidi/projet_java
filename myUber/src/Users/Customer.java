@@ -4,42 +4,75 @@ import java.util.Scanner;
 
 import Rides.Rides;
 import Rides.RidesFactory;
+import myUber.GPSPosition;
 //import myUber.ConcreteUberVisitor;
 //import myUber.UberVisitor;
 
 public class Customer extends User{
 
-	private String GPS;
+	private GPSPosition gpsPosition;
 	private int creditcardnumb;
 	private ArrayList<String> messagebox;
 	private static int  idact;
 	private int nbmess;
-	private String destination;
+	private  GPSPosition destination;
 	
-	Customer(String name, String surname, String GPS, int credicardnumb){
+	Customer(String name, String surname, int credicardnumb){
 		super(name, surname, Customer.idact);
-		this.GPS = GPS;
 		this.creditcardnumb = credicardnumb;
 		messagebox = new ArrayList<String>();
 		idact ++;
 		this.nbmess = 0;
 	}
 
-	public String getGPS() {
-		return this.GPS;
+	/**
+	 * @return the gpsPosition
+	 */
+	public GPSPosition getGpsPosition() {
+		return gpsPosition;
 	}
-	public String getdestination() {
+
+
+
+	/**
+	 * @param gpsPositionX the gpsPositionX to set
+	 */
+	public void setGpsPositionX(GPSPosition gpsPosition) {
+		this.gpsPosition = gpsPosition;
+	}
+	
+	/**
+	 * @return  gpsPosition of the current destination
+	 */
+	public GPSPosition getdestination() {
 		return this.destination;
 	}
+	
+	/**
+	 * @return the creditcardnum
+	 */
 	public int getcreditcardnumb() {
 		return this.creditcardnumb;
 	}
-	public String getMessage(int indice) {
-		return (String) messagebox.get(indice);
+	
+	/**
+	 * @param i the index of the message to get
+	 * @return The message with the index i in the messagebox
+	 */
+	public String getMessage(int i) {
+		return (String) messagebox.get(i);
 	}
+	
+	/**
+	 * @return the last message given
+	 */
 	public String getLastMessage() {
 		return (String) messagebox.get(nbmess);
 	}
+	
+	/**
+	 * @param message the message that is added to messagebox
+	 */
 	public void addMessage(String message) {
 		messagebox.add(message);
 		nbmess ++;
@@ -68,7 +101,6 @@ public class Customer extends User{
 	public void cancel() {
 		this.rides.cancel();  dans myuber
 	}
-
 	public void note(int note) {
 		this.rides.note(note);  dans my uber
 	}*/
