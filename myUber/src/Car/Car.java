@@ -56,9 +56,9 @@ public class Car {
 
 
 	/**
-	 * @param gpsPositionX the gpsPosition to set
+	 * @param gpsPosition the gpsPosition to set
 	 */
-	public void setGpsPositionX(GPSPosition gpsPosition) {
+	public void setGpsPosition(GPSPosition gpsPosition) {
 		this.gpsPosition = gpsPosition;
 	}
 
