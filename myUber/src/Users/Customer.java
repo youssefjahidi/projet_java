@@ -9,7 +9,7 @@ import Rides.RidesFactory;
 
 public class Customer extends User{
 
-	private String GPS;
+	private GPSPosition gpsPosition;
 	private int creditcardnumb;
 	private ArrayList<String> messagebox;
 	private static int  idact;
@@ -25,9 +25,22 @@ public class Customer extends User{
 		this.nbmess = 0;
 	}
 
-	public String getGPS() {
-		return this.GPS;
+	/**
+	 * @return the gpsPosition
+	 */
+	public GPSPosition getGpsPosition() {
+		return gpsPosition;
 	}
+
+
+
+	/**
+	 * @param gpsPositionX the gpsPositionX to set
+	 */
+	public void setGpsPositionX(GPSPosition gpsPosition) {
+		this.gpsPosition = gpsPosition;
+	}
+	
 	public String getdestination() {
 		return this.destination;
 	}
