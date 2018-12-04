@@ -11,7 +11,7 @@ import myUber.Calcul;
 import myUber.GPSPosition;
 
 
-public class Rides {
+public class Rides implements Observable{
 	
 	private Customer customer;
 	private Driver driver;

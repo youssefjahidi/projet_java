@@ -8,7 +8,7 @@ import myUber.GPSPosition;
 //import myUber.ConcreteUberVisitor;
 //import myUber.UberVisitor;
 
-public class Customer extends User{
+public class Customer extends User implements Observer{
 
 	private GPSPosition gpsPosition;
 	private int creditcardnumb;

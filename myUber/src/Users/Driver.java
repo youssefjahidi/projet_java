@@ -10,7 +10,7 @@ import Car.Car;
  * @autot Axel Vincent
  *
  */
-public class Driver extends User{
+public class Driver extends User implements Observer{
 	private Car car;
 	private DriverState state;
 	private static int idact;
