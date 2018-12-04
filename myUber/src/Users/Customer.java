@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import Rides.Rides;
 import Rides.RidesFactory;
+import myUber.GPSPosition;
 //import myUber.ConcreteUberVisitor;
 //import myUber.UberVisitor;
 
@@ -16,9 +17,8 @@ public class Customer extends User{
 	private int nbmess;
 	private String destination;
 	
-	Customer(String name, String surname, String GPS, int credicardnumb){
+	Customer(String name, String surname, int credicardnumb){
 		super(name, surname, Customer.idact);
-		this.GPS = GPS;
 		this.creditcardnumb = credicardnumb;
 		messagebox = new ArrayList<String>();
 		idact ++;
@@ -81,7 +81,6 @@ public class Customer extends User{
 	public void cancel() {
 		this.rides.cancel();  dans myuber
 	}
-
 	public void note(int note) {
 		this.rides.note(note);  dans my uber
 	}*/
