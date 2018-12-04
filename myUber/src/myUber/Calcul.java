@@ -3,14 +3,14 @@ package myUber;
 import java.util.Date;
 
 public class Calcul {
-	// coordonnée gps d'un point : int°int'int", int°int'int"
-	// la première partie correspond à la latitude et la deuxième partie à la longitude
+	// coordonnÃ©e gps d'un point : intÂ°int'int", intÂ°int'int"
+	// la premiÃ¨re partie correspond Ã  la latitude et la deuxiÃ¨me partie Ã  la longitude
 	public static double distance(String GPS1, String GPS2) {
-		// On sépare la longitude et la latidude de la première coordonnée
+		// On sÃ©pare la longitude et la latidude de la premiÃ¨re coordonnÃ©e
 		String[] part1 = GPS1.split(", ");		
 		
-		// Puis on sépare chaque partie pour pouvoir calculer la vrai latidude
-		String[] part1_1 = part1[0].split("°");
+		// Puis on sÃ©pare chaque partie pour pouvoir calculer la vrai latidude
+		String[] part1_1 = part1[0].split("Â°");
 		String[] part1_2 = part1_1[1].split("'");
 		String[] part1_3 = part1_2[1].split("\"");
 				
@@ -18,8 +18,8 @@ public class Calcul {
 		+(double)  Integer.parseInt(part1_2[0])/60 
 		+ (double) Float.parseFloat(part1_3[0])/3600;		
 		
-		// Puis on sépare chaque partie pour pouvoir calculer la vrai longitude
-		String[] part2_1 = part1[1].split("°");
+		// Puis on sÃ©pare chaque partie pour pouvoir calculer la vrai longitude
+		String[] part2_1 = part1[1].split("Â°");
 		String[] part2_2 = part2_1[1].split("'");
 		String[] part2_3 = part2_2[1].split("\"");
 				
@@ -29,10 +29,10 @@ public class Calcul {
 		
 
 		
-		// On fait de même avec la deuxième chaine de caractère
+		// On fait de mÃªme avec la deuxiÃ¨me chaine de caractÃ¨re
 		String[] part2 = GPS2.split(", ");		
 		
-		part1_1 = part2[0].split("°");
+		part1_1 = part2[0].split("Â°");
 		part1_2 = part1_1[1].split("'");
 		part1_3 = part1_2[1].split("\"");
 				
@@ -41,7 +41,7 @@ public class Calcul {
 		+ (double) Float.parseFloat(part1_3[0])/3600;		
 		
 		
-		part2_1 = part2[1].split("°");
+		part2_1 = part2[1].split("Â°");
 		part2_2 = part2_1[1].split("'");
 		part2_3 = part2_2[1].split("\"");
 		
@@ -60,7 +60,7 @@ public class Calcul {
 
 	}
 	
-	public static String heure() {
+	public static String hour() {
 		Date maDate = new Date();
 		String heure;
 		heure = maDate.toString().split(" ")[3];
@@ -68,9 +68,9 @@ public class Calcul {
 	}
 
 	
-	// Donne la duréé du trajet en min donnée en argument
-	public static int durée(double length) {
-		String temps = Calcul.heure();
+	// Donne la durÃ©Ã© du trajet en min donnÃ©e en argument
+	public static int duration(double length) {
+		String temps = Calcul.hour();
 		String[] temps2 = temps.split(":");
 		int heure =  Integer.parseInt(temps2[0]);
 		double averagespeed;
@@ -82,15 +82,15 @@ public class Calcul {
 		
 		return (int) (60/averagespeed * length);
 	}
-	// Donne l'heure d'arrivé du trajet
-	public static String temps(double length) {
-		int durée = Calcul.durée(length);
-		String temps = Calcul.heure();
+	// Donne l'heure d'arrivÃ© du trajet
+	public static String arrival_time(double length) {
+		int durÃ©e = Calcul.duration(length);
+		String temps = Calcul.hour();
 		String[] temps2 = temps.split(":");
 		int heure = Integer.parseInt(temps2[0]);
 		int minute = Integer.parseInt(temps2[1]);
-		minute += durée %60;
-		heure += durée/60;
+		minute += durÃ©e %60;
+		heure += durÃ©e/60;
 		return heure + ":" +minute + ":"+temps2[2];
 		
 	}
