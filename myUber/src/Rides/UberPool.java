@@ -1,4 +1,4 @@
-package Rides;
+	package Rides;
 
 import Car.*;
 import Users.Customer;
@@ -13,7 +13,7 @@ public class UberPool implements Rides {
 	private Driver driver;
 	private Car car;
 	private double length; // la longueur de la course
-	private int duration; // la durée de la course
+	private int duration; // la durÃ©e de la course
 	private int nbpersonne;
 	private String state;
 	private String boardingtime;
@@ -78,8 +78,9 @@ public class UberPool implements Rides {
 	@Override
 	public void request() {
 		for(Standard standard: Standard.S_exist){
-			double distancechauffeur = Calcul.distance(standard.getGPS(), this.customer.getGPS() );
-			if( distancechauffeur<5 && this.nbpersonne<= standard.getnbplace() ){
+			double distancechauffeur = Calcul.distance(this.car.getGpsPositionX(), this.car.getGpsPositionY(),
+					this.customer.getGpsPositionX(), this.customer.getGpsPositionY());
+			if( distancechauffeur<5 && this.nbpersonne<= standard.getnbSeats() ){
 				Driver d = standard.contact(this.customer.getName(),distancechauffeur,this.length);
 				if(d != null) {
 					this.car = standard;
@@ -89,18 +90,19 @@ public class UberPool implements Rides {
 			}
 		}
 		if(this.car ==null) {System.out.println("Pas de conducteur disponible");}
-		else {double distchauffeur = Calcul.distance(this.car.getGPS(), this.customer.getGPS());
-			System.out.println("Nous avons trouvé un chauffeur. \n "
-				+ "Il arrive dans " + Calcul.durée(distchauffeur)+ "\n"
-				+ "Arrivé à destination prévue à : " + Calcul.temps(distchauffeur + this.length));
+		else {double distchauffeur = Calcul.distance(this.car.getGpsPositionX(), this.car.getGpsPositionY(),
+				this.customer.getGpsPositionX(), this.customer.getGpsPositionY());
+			System.out.println("Nous avons trouvÃ© un chauffeur. \n "
+				+ "Il arrive dans " + Calcul.duration(distchauffeur)+ "\n"
+				+ "ArrivÃ© Ã  destination prÃ©vue Ã  : " + Calcul.arrival_time(distchauffeur + this.length));
 
 			this.setconfirmed();
 			this.driver.setonaride();
-			this.boardingtime = Calcul.temps(distchauffeur);
-			this.landingtime = Calcul.temps(distchauffeur+length);
+			this.boardingtime = Calcul.arrival_time(distchauffeur);
+			this.landingtime = Calcul.arrival_time(distchauffeur+length);
 			
 			Rides.BookOfRides.add("Driver : " + this.driver.getID() + "\n" +
-					"CarID : " + this.car.getID() + "\n" +
+					"CarID : " + this.car.getId() + "\n" +
 					"customer : " + this.customer.getID() + "\n" + 
 					"Starting point : " + this.customer.getGPS() + "\n" + 
 					"Ending point : " + this.destination + "\n" + 
