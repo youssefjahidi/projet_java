@@ -25,6 +25,21 @@ public class Driver extends User implements Observer{
 		Driver.idact ++;
 	}
 
+	
+	/**
+	 * @return the car
+	 */
+	public Car getCar() {
+		return car;
+	}
+
+
+	/**
+	 * @param car the car to set
+	 */
+	public void setCar(Car car) {
+		this.car = car;
+	}
 
 	/**
 	 * @return the state
