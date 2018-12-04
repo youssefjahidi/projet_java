@@ -27,8 +27,9 @@ public class GPSPosition {
 				Math.pow( this.getY()-GPS.getY(),2)   );
 	}
 	
-	public void equal() {
-		
+	public boolean equal(GPSPosition Gps) {
+		return (this.Xpos == Gps.getX() && this.Ypos == Gps.getY());
 	}
+
 
 }
