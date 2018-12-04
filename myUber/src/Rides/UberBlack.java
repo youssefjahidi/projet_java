@@ -12,7 +12,7 @@ public class UberBlack implements Rides {
 	private Driver driver;
 	private Car car;
 	private double length; // la longueur de la course
-	private int duration; // la durée de la course
+	private int duration; // la durÃ©e de la course
 	private int nbpersonne;
 	private String state;
 	private String boardingtime;
@@ -25,7 +25,7 @@ public class UberBlack implements Rides {
 		this.state = "unconfirmed";
 		this.nbpersonne = nbpersonne;
 		this.length = Calcul.distance(customer.getGPS(), destination);
-		this.duration = Calcul.durée(length);
+		this.duration = Calcul.durÃ©e(length);
 		}
 
 	@Override
@@ -77,9 +77,10 @@ public class UberBlack implements Rides {
 	@Override
 	public void request() {
 		for(Berline berline: Berline.B_exist){
-			double distancechauffeur = Calcul.distance(berline.getGPS(), this.customer.getGPS());
-			if(distancechauffeur <10 && this.nbpersonne<= berline.getnbplace() ){
-				Driver d = berline.contact(this.customer.getName(),distancechauffeur,this.length);
+			double distdriver = Calcul.distance(this.car.getGpsPositionX(), this.car.getGpsPositionY(),
+					this.customer.getGpsPositionX(), this.customer.getGpsPositionY());
+			if(distdriver <10 && this.nbpersonne<= berline.getnbSeats() ){
+				Driver d = berline.contact(this.customer.getName(),distdriver,this.length);
 				if(d != null) {
 					this.car = berline;
 					this.driver = d;
@@ -88,18 +89,19 @@ public class UberBlack implements Rides {
 			}
 		}
 		if(this.car ==null) {System.out.println("Pas de conducteur disponible");}
-		else {double distchauffeur = Calcul.distance(this.car.getGPS(), this.customer.getGPS());
-			System.out.println("Nous avons trouvé un chauffeur. \n "
-				+ "Il arrive dans " + Calcul.durée(distchauffeur)+ "min \n"
-				+ "Arrivé à destination prévue à : " + Calcul.temps(distchauffeur + this.length));
+		else {double distdriver = Calcul.distance(this.car.getGpsPositionX(), this.car.getGpsPositionY(),
+				this.customer.getGpsPositionX(), this.customer.getGpsPositionY());
+			System.out.println("Nous avons trouvÃ© un chauffeur. \n "
+				+ "Il arrive dans " + Calcul.duration(distdriver)+ "min \n"
+				+ "ArrivÃ© Ã  destination prÃ©vue Ã  : " + Calcul.arrival_time(distdriver + this.length));
 
 			this.setconfirmed();
 			this.driver.setonaride();
-			this.boardingtime = Calcul.temps(distchauffeur);
-			this.landingtime = Calcul.temps(distchauffeur+length);
+			this.boardingtime = Calcul.arrival_time(distdriver);
+			this.landingtime = Calcul.arrival_time(distdriver+length);
 			
 			Rides.BookOfRides.add("Driver : " + this.driver.getID() + "\n" +
-					"CarID : " + this.car.getID() + "\n" +
+					"CarID : " + this.car.getId() + "\n" +
 					"customer : " + this.customer.getID() + "\n" + 
 					"Starting point : " + this.customer.getGPS() + "\n" + 
 					"Ending point : " + this.destination + "\n" + 
