@@ -15,7 +15,7 @@ public class Customer extends User{
 	private ArrayList<String> messagebox;
 	private static int  idact;
 	private int nbmess;
-	private String destination;
+	private  GPSPosition destination;
 	
 	Customer(String name, String surname, int credicardnumb){
 		super(name, surname, Customer.idact);
@@ -44,7 +44,7 @@ public class Customer extends User{
 	/**
 	 * @return  gpsPosition of the current destination
 	 */
-	public String getdestination() {
+	public GPSPosition getdestination() {
 		return this.destination;
 	}
 	
