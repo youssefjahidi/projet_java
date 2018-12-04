@@ -41,18 +41,38 @@ public class Customer extends User{
 		this.gpsPosition = gpsPosition;
 	}
 	
+	/**
+	 * @return  gpsPosition of the current destination
+	 */
 	public String getdestination() {
 		return this.destination;
 	}
+	
+	/**
+	 * @return the creditcardnum
+	 */
 	public int getcreditcardnumb() {
 		return this.creditcardnumb;
 	}
-	public String getMessage(int indice) {
-		return (String) messagebox.get(indice);
+	
+	/**
+	 * @param i the index of the message to get
+	 * @return The message with the index i in the messagebox
+	 */
+	public String getMessage(int i) {
+		return (String) messagebox.get(i);
 	}
+	
+	/**
+	 * @return the last message given
+	 */
 	public String getLastMessage() {
 		return (String) messagebox.get(nbmess);
 	}
+	
+	/**
+	 * @param message the message that is added to messagebox
+	 */
 	public void addMessage(String message) {
 		messagebox.add(message);
 		nbmess ++;
