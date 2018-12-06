@@ -27,7 +27,6 @@ public class CLUI {
 		/**
 		 * instantiate object from MyUber class
 		 */
-		MyUber clientApp = new MyUber();
 		
 		/*boolean exit = false;
 		String command = "";
@@ -40,7 +39,14 @@ public class CLUI {
 		String[] parsedCommandline = commandline.split(" "); //separate command arguments
 		System.out.println("test1");
 		System.out.println(parsedCommandline[0].equals("moveCar"));
+		Clui(parsedCommandline);
 		
+	}
+	
+	
+	public static void Clui(String[] parsedCommandline) {
+		MyUber clientApp = new MyUber();
+
 		//communicates with client app to setup an environment 
 		if (parsedCommandline[0].equals("setup") && parsedCommandline.length == 5){
 			System.out.println("test2");
@@ -50,8 +56,8 @@ public class CLUI {
 				int nBerlineCar = Integer.parseInt(parsedCommandline[2]);
 				int nVanCar = Integer.parseInt(parsedCommandline[3]);
 				int nCustomer = Integer.parseInt(parsedCommandline[4]);
-				if(clientApp.setup(nBerlineCar, nVanCar, nCustomer)){System.out.println("System setup");}
-				else{System.out.println("an error occured, check the input");}
+				clientApp.setup(nStandardCar, nBerlineCar, nVanCar, nCustomer);
+				
 					
 			} catch (Exception e) {
 				System.out.println("an error occured, check the input");
@@ -142,6 +148,24 @@ public class CLUI {
 		}
 		System.out.println("test3");
 		
+		//communicates with client app to move the customer
+		if (parsedCommandline[0].equals("moveCustomer") && parsedCommandline.length == 4){
+			System.out.println("test2");
+			String customerId = parsedCommandline[1];
+			try {
+				double posX = Float.parseFloat(parsedCommandline[2]);
+				double posY = Float.parseFloat(parsedCommandline[3]);
+				GPSPosition gpsPosition = new GPSPosition(posX,posY);
+				if(clientApp.moveCustomer(customerId, gpsPosition)){
+					System.out.println("Customer succesfully moved");}
+				else{System.out.println("an error occured, check the input");}
+					
+			} catch (Exception e) {
+				System.out.println("an error occured, check the input");
+			}
+
+		}
+		System.out.println("test3");
 	}
 	
 
