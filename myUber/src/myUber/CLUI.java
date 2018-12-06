@@ -3,20 +3,6 @@ package myUber;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
-/**
- * This class communicates with the user through command lines
- * 
- * @author Youssef Jahidi
- * 
- * @author Axel Vincent
- *
- */
-package myUber;
-
-import java.util.ArrayList;
-import java.util.Scanner;
-
 import Users.Customer;
 
 
