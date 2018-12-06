@@ -1,4 +1,8 @@
 package myUber;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -25,20 +29,6 @@ public class MyUber {
 	 */
 	public static HashMap<String[], Driver> drivers = new HashMap<String[], Driver>();
 
-	/**
-	 * Cars hashmap indexed by car id
-	 */
-	public static HashMap<String, Standard> standardCars = new HashMap<String, Standard>();
-	
-	/**
-	 * Cars hashmap indexed by car id
-	 */
-	public static HashMap<String, Berline> berlineCars = new HashMap<String, Berline>();
-	
-	/**
-	 * Cars hashmap indexed by car id
-	 */
-	public static HashMap<String, Van> vanCars = new HashMap<String, Van>();
 	
 	/**
 	 * Cars hashmap indexed by car id
@@ -47,8 +37,40 @@ public class MyUber {
 	
 	private CarFactory carFactory = new CarFactory();
 	
+	/**
+	 * Read the file and then launch each line as a CLUI command
+	 * @param fileName the name of the file we're supposed to launch
+	 */
 	public void init(String fileName) {
-		
+		FileInputStream fis = null;
+        String string = "";
+
+	      try {
+	      fis = new FileInputStream(new File(fileName));
+  	  int n = 0;
+        byte[] buf = new byte[8];
+
+	      while ((n = fis.read(buf)) >= 0) {
+	            for (byte bit : buf) {
+	            	string = string + (char)bit;
+	            }
+
+	            buf = new byte[8];
+
+	         }
+	      }
+	      catch (FileNotFoundException e) {
+	          e.printStackTrace();
+	       }
+	      catch (IOException e) {
+	            e.printStackTrace();
+	         }
+	    String[] parsed = string.split("\n");
+	    for(String line: parsed) {
+	    	String[] parsedCommandline = line.split(" ");
+	    	CLUI.Clui(parsedCommandline);
+	    }
+		System.out.println(parsed[1] );	
 	}
 	
 	/**
@@ -60,16 +82,17 @@ public class MyUber {
 	 */
 	public void setup(int nStandardCar, int nBerlineCar,int nVanCar, int nCustomer) {
 		for(int i= 0;  i < nStandardCar; i++) {
-			addCarDriver("Driver" + i+ "nameS", "Driver" + i+ "surnameS", "Standard");
+			addCarandDriver("Driver" + i+ "nameS", "Driver" + i+ "surnameS", "Standard");
 		}
 		for(int i= 0;  i < nBerlineCar; i++) {
-			addCarDriver("Driver" + i+ "nameB", "Driver" + i+ "surnameB", "Standard");
+			addCarandDriver("Driver" + i+ "nameB", "Driver" + i+ "surnameB", "Standard");
 		}
 		for(int i= 0;  i < nVanCar; i++) {
-			addCarDriver("Driver" + i+ "nameV", "Driver" + i+ "surnameV", "Standard");
+			addCarandDriver("Driver" + i+ "nameV", "Driver" + i+ "surnameV", "Standard");
 		}
 		for(int i= 0;  i < nCustomer; i++) {
-			addCustomer("Customer" + i+ "name", "Customer" + i+ "surname");
+			Customer customer = new Customer("Customer" + i + "name","Customer" + i +"surname");
+			MyUber.customers.put(customer.getId(), customer);
 		}
 	}
 	
@@ -88,12 +111,12 @@ public class MyUber {
 	}
 	
 	/**
-	 * Add a Car and a Driver and associate them
+	 * add a car and a driver and associate them
 	 * @param Drivername the name of the driver
 	 * @param Driversurname the surname of the driver
 	 * @param carType the type of the car
 	 */
-	public void addCarDriver(String Drivername,String Driversurname,String carType) {
+	public void addCarandDriver(String Drivername,String Driversurname,String carType) {
 		Driver driver = new Driver(Drivername, Driversurname);
 		Car car = carFactory.createCar(carType);
 		car.addDriver(driver);
@@ -101,10 +124,15 @@ public class MyUber {
 		String[] s = {Drivername,Driversurname};
 		MyUber.drivers.put(s, driver);
 		MyUber.allCars.put(car.getId(),car);
-		// Est ce que les vanCars/BerlineCar etc. sont vraiment utiles ? On pourrait simplement parcourir 
-		// allCars et checker si l'ID commence par van/berline etc. non ? Sinon c'est un peu chiant pour
-		// ajouter chaque nouvelle voiture une fois crÃ©e dans la bonne liste
-		// Et c'est un peu redondant		
+	}
+	/**
+	 * Add a Car and a Driver and associate them, then display the state
+	 * @param Drivername the name of the driver
+	 * @param Driversurname the surname of the driver
+	 * @param carType the type of the car
+	 */
+	public void addCarDriver(String Drivername,String Driversurname,String carType) {
+		addCarandDriver(Drivername,Driversurname,carType);
 		for (String key : MyUber.allCars.keySet()) {
 			System.out.println("The car : " + key + " is associated with the following Driver : \n");
 					for (Driver driverofcar : MyUber.allCars.get(key).getDrivers()) {
@@ -177,10 +205,7 @@ public class MyUber {
 	 * @param posY y coordinate
 	 * @return Boolean: true if id found and coordinates inside the bounds, else returns false.
 	 */
-	public boolean moveCar(String carId, GPSPosition gpsPosition){
-		allCars.putAll(standardCars);
-		allCars.putAll(berlineCars);
-		allCars.putAll(vanCars);		
+	public boolean moveCar(String carId, GPSPosition gpsPosition){		
 		if(allCars.containsKey(carId) && Math.abs(gpsPosition.getX())<=50 && Math.abs(gpsPosition.getY())<=50 )
 		{
 			allCars.get(carId).setGpsPosition(gpsPosition);
@@ -270,10 +295,10 @@ public class MyUber {
 		}
 		if(driver == null){System.out.println("Pas de conducteur disponible");}
 		else if(time == -1) {
-			System.out.println("Nous avons trouvÃ© un chauffeur. \n "
+			System.out.println("Nous avons trouvé un chauffeur. \n "
 					+ "Il arrive dans " + Calcul.duration(distdriver,-1)+ "min \n");
 		}
-		else {System.out.println("Nous avons trouvÃ© un chauffeur. \n ");}
+		else {System.out.println("Nous avons trouvé un chauffeur. \n ");}
 		
 		UberVisitor visitor = new ConcreteUberVisitor();
 		double price = ride.accept(visitor);

@@ -8,21 +8,29 @@ import myUber.GPSPosition;
 //import myUber.ConcreteUberVisitor;
 //import myUber.UberVisitor;
 
-public class Customer extends User implements Observer{
+public class Customer extends User{
 
 	private GPSPosition gpsPosition;
 	private int creditcardnumb;
 	private ArrayList<String> messagebox;
 	private static int  idact;
 	private int nbmess;
-	private  GPSPosition destination;
+	private GPSPosition destination;
 	
-	Customer(String name, String surname, int credicardnumb){
+
+	public Customer(String name, String surname){
+		super(name, surname, Customer.idact);
+		messagebox = new ArrayList<String>();
+		idact ++;
+		this.nbmess = -1;
+	}
+	
+	public Customer(String name, String surname, int credicardnumb){
 		super(name, surname, Customer.idact);
 		this.creditcardnumb = credicardnumb;
 		messagebox = new ArrayList<String>();
 		idact ++;
-		this.nbmess = 0;
+		this.nbmess = -1;
 	}
 
 	/**
@@ -37,7 +45,7 @@ public class Customer extends User implements Observer{
 	/**
 	 * @param gpsPositionX the gpsPositionX to set
 	 */
-	public void setGpsPositionX(GPSPosition gpsPosition) {
+	public void setGpsPosition(GPSPosition gpsPosition) {
 		this.gpsPosition = gpsPosition;
 	}
 	
@@ -77,31 +85,5 @@ public class Customer extends User implements Observer{
 		messagebox.add(message);
 		nbmess ++;
 	}
-	/*public void request(String destination) {	
-		this.destination = destination;
-		Rides uberX = RidesFactory.createRides("UberX");
-		uberX.prepare(this, destination,0);
-		Rides uberVan = RidesFactory.createRides("UberVan");
-		uberVan.prepare(this, destination,0);
-		Rides uberPool = RidesFactory.createRides("UberPool");
-		uberPool.prepare(this, destination,0);
-		Rides uberBlack = RidesFactory.createRides("UberBlack");
-		uberBlack.prepare(this, destination,0);
-		
-		UberVisitor visitor = new ConcreteUberVisitor();
-		System.out.println( "UberX : " + uberX.accept(visitor) +"\n" + 
-							"UberVan : " + uberVan.accept(visitor) +"\n" +
-							"UberPool : " + uberPool.accept(visitor) +"\n" +
-							"UberBlack : " + uberBlack.accept(visitor) 
-				);
-	}
-	
-	
-	
-	public void cancel() {
-		this.rides.cancel();  dans myuber
-	}
-	public void note(int note) {
-		this.rides.note(note);  dans my uber
-	}*/
+
 }

@@ -27,7 +27,7 @@ public class CarFactory {
 	
 	
 	/**
-	 * instntiate a factory by setting the counters to 0.
+	 * instantiate a factory by setting the counters to 0.
 	 */
 	public CarFactory() {
 		 this.standardIdAct = 0;

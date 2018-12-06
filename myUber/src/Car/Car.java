@@ -2,6 +2,8 @@ package Car;
 import java.util.ArrayList;
 
 import Users.Driver;
+import Users.DriverState;
+import myUber.GPSPosition;
 
 /**
  * This class represents the car in the uber system. It has a list of drivers, a GPS Position, 
@@ -63,6 +65,7 @@ public class Car {
 	}
 
 
+
 	/**
 	 * @return the drivers list
 	 */
@@ -86,6 +89,15 @@ public class Car {
 
 	public  void addDriver(Driver driver){
 		drivers.add(driver);
+	};
+	
+	public  Driver contact(){
+	for(Driver driver: drivers){
+		if(driver.getState().equals("onduty")){
+			if(driver.getState().equals(DriverState.onDuty)) {return driver;}
+		}
+	}
+	return null;
 	};
 	
 	

@@ -103,8 +103,11 @@ public class User {
 	/**
 	 * @param rating the rating to set
 	 */
-	public void setRating(float rating) {
-		this.rating = rating;
+	public void addRating(float rating) {
+		nbRides++;
+		if (rating <0) {rating = 0;}
+		if (rating>5) {rating = 5;}
+		this.rating = (rating + this.rating) / this.nbRides;
 	}
 
 	/**

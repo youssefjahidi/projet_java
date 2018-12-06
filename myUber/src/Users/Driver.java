@@ -10,22 +10,22 @@ import Car.Car;
  * @autot Axel Vincent
  *
  */
-public class Driver extends User implements Observer{
+public class Driver extends User{
 	private Car car;
 	private DriverState state;
 	private static int idact;
-	private float totalMoney;
+	private double totalMoney;
 	private float onDutyRate;
 	private float activityRate;
 	
 	
-	Driver(String name, String surname){
+	public Driver(String name, String surname){
 		super(name, surname, Driver.idact);
 		this.state = DriverState.offline;
 		Driver.idact ++;
 	}
 
-	
+
 	/**
 	 * @return the car
 	 */
@@ -40,6 +40,7 @@ public class Driver extends User implements Observer{
 	public void setCar(Car car) {
 		this.car = car;
 	}
+
 
 	/**
 	 * @return the state
@@ -60,7 +61,7 @@ public class Driver extends User implements Observer{
 	/**
 	 * @return the totalMoney
 	 */
-	public float getTotalMoney() { // implement that
+	public double getTotalMoney() { // implement that
 		return totalMoney;
 	}
 
@@ -68,8 +69,8 @@ public class Driver extends User implements Observer{
 	/**
 	 * @param totalMoney the totalMoney to set
 	 */
-	public void setTotalMoney(float totalMoney) {
-		this.totalMoney = totalMoney;
+	public void addMoney(double Money) {
+		this.totalMoney = this.totalMoney + Money;
 	}
 
 

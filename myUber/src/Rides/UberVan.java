@@ -4,22 +4,80 @@ import Car.*;
 import Users.Customer;
 import Users.Driver;
 import myUber.Calcul;
+import myUber.GPSPosition;
 import myUber.UberVisitor;
 
-public class UberVan extends Rides {
+public class UberVan implements Rides {
 
+	private Customer customer;
+	private GPSPosition destination;
+	private Driver driver;
+	private Car car;
+	private double length; // la longueur de la course
+	private int duration; // la durée de la course
+	private int nbpersonne;
+	private String state;
+	private String boardingtime;
+	private String landingtime;
 
-	public UberVan(Customer customer, GPSPosition destination, int idAct){
-		super(customer, destination, uberVan, "UberVan" + (String) Integer.toString(idAct));
+	@Override
+	public void prepare(Customer customer, GPSPosition destination, int nbpersonne, int hour) {
+		this.customer = customer;
+		this.destination = destination;
+		this.state = "unconfirmed";
+		this.nbpersonne = nbpersonne;
+		this.length = customer.getGpsPosition().distance( destination);
+		 Calcul.duration(length,hour);
+		}
+
+	@Override
+	public GPSPosition getdestination() {
+		return this.destination;
+	}
+
+	@Override
+	public Customer getcustomer() {
+		return this.customer;
+	}
+	@Override
+	public double getlength() {
+		return this.length;
+	}
 
 	
+	@Override
+	public void setunconfirmed() {
+		this.state = "unconfirmed";
+	}
+
+	@Override
+	public void setconfirmed() {
+		this.state= "confirmed";
+	}
+
+	@Override
+	public void setongoing() {
+		this.state= "ongoing";
+	}
+
+	@Override
+	public void setcanceled() {
+		this.state = "canceled";
+		
+	}
+
+	@Override
+	public void setcompleted() {
+		this.state = "completed";
+		
+	}
 
 	@Override
 	public double accept(UberVisitor visitor) {
 		return visitor.visit(this);
 	}
 	
-	
+	/*
 	@Override
 	public void request() {
 		for(Van van: Van.V_exist){
@@ -37,9 +95,9 @@ public class UberVan extends Rides {
 		if(this.car ==null) {System.out.println("Pas de conducteur disponible");}
 		else {double distchauffeur = Calcul.distance(this.car.getGpsPositionX(), this.car.getGpsPositionY(),
 				this.customer.getGpsPositionX(), this.customer.getGpsPositionY());
-			System.out.println("Nous avons trouvÃ© un chauffeur. \n "
+			System.out.println("Nous avons trouvé un chauffeur. \n "
 				+ "Il arrive dans " + Calcul.duration(distchauffeur)+ "\n"
-				+ "ArrivÃ© Ã  destination prÃ©vue Ã  : " + Calcul.arrival_time(distchauffeur + this.length));
+				+ "Arrivé à destination prévue à : " + Calcul.arrival_time(distchauffeur + this.length));
 
 			this.setconfirmed();
 			this.driver.setonaride();
@@ -67,5 +125,5 @@ public class UberVan extends Rides {
 	public void note(int note) {
 		this.driver.note(note);
 	}
-
+*/
 }

@@ -31,5 +31,4 @@ public class GPSPosition {
 		return (this.Xpos == Gps.getX() && this.Ypos == Gps.getY());
 	}
 
-
 }

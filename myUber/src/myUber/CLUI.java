@@ -24,32 +24,28 @@ public class CLUI {
 		 */
 		Scanner scanner = new Scanner(System.in);
 		
+		
+		String commandline = "";
+
+		String[] initialisation = {"ini","C:\\Users\\axel\\eclipse-workspace\\myUber2\\ini.ini"};
+		Clui(initialisation);
+		while(!commandline.equalsIgnoreCase("stop")) {
+			
+		System.out.println("write something");
+		commandline = scanner.nextLine();	
+		System.out.println(commandline.toString());
+		String[] parsedCommandline = commandline.split(" "); //separate command arguments
+		Clui(parsedCommandline);
+		}}
+		
+		public static void Clui(String[] parsedCommandline){
 		/**
 		 * instantiate object from MyUber class
 		 */
-		
-		/*boolean exit = false;
-		String command = "";
-		ArrayList <String> arguments = new ArrayList<String>();
-		boolean readFromFile = false;
-		ArrayList<String> commandsList= new ArrayList<String>();*/
-		System.out.println("write smthng");
-		String commandline = scanner.nextLine();	
-		System.out.println(commandline.toString());
-		String[] parsedCommandline = commandline.split(" "); //separate command arguments
-		System.out.println("test1");
-		System.out.println(parsedCommandline[0].equals("moveCar"));
-		Clui(parsedCommandline);
-		
-	}
-	
-	
-	public static void Clui(String[] parsedCommandline) {
 		MyUber clientApp = new MyUber();
 
 		//communicates with client app to setup an environment 
 		if (parsedCommandline[0].equals("setup") && parsedCommandline.length == 5){
-			System.out.println("test2");
 
 			try {
 				int nStandardCar = Integer.parseInt(parsedCommandline[1]);
@@ -64,11 +60,10 @@ public class CLUI {
 			}
 
 		}
-		System.out.println("test3");
-	
+
+		
 		//communicates with client app to add a Customer 
 		if (parsedCommandline[0].equals("addCustomer") && parsedCommandline.length == 3){
-			System.out.println("test2");
 				String name = parsedCommandline[1];
 				String surname = parsedCommandline[2];
 			try {
@@ -79,11 +74,9 @@ public class CLUI {
 			}
 
 		}
-		System.out.println("test3");
 		
 		//communicates with client app to setup an add a Driver and its Car 
 		if (parsedCommandline[0].equals("addCarDriver") && parsedCommandline.length == 4){
-			System.out.println("test2");
 				String Drivername = parsedCommandline[1];
 				String Driversurname = parsedCommandline[2];
 				String carType = parsedCommandline[3];
@@ -95,11 +88,9 @@ public class CLUI {
 			}
 
 		}
-		System.out.println("test3");
 		
 		//communicates with client app to setup an add a Driver and relate it to a Car
 		if (parsedCommandline[0].equals("addDriver") && parsedCommandline.length == 4){
-			System.out.println("test2");
 				String Drivername = parsedCommandline[1];
 				String Driversurname = parsedCommandline[2];
 				String carID = parsedCommandline[3];
@@ -111,12 +102,10 @@ public class CLUI {
 			}
 
 		}
-		System.out.println("test3");
 		
 		
 		//communicates with client app to setup an add a Driver and its Car 
 		if (parsedCommandline[0].equals("setDriverStatus") && parsedCommandline.length == 4){
-			System.out.println("test2");
 				String Drivername = parsedCommandline[1];
 				String Driversurname = parsedCommandline[2];
 				String status = parsedCommandline[3];
@@ -127,11 +116,9 @@ public class CLUI {
 			}
 
 		}
-		System.out.println("test3");
 		
 		//communicates with client app to move the car
 		if (parsedCommandline[0].equals("moveCar") && parsedCommandline.length == 4){
-			System.out.println("test2");
 			String carId = parsedCommandline[1];
 			System.out.println(carId);
 			try {
@@ -146,11 +133,9 @@ public class CLUI {
 			}
 
 		}
-		System.out.println("test3");
 		
 		//communicates with client app to move the customer
 		if (parsedCommandline[0].equals("moveCustomer") && parsedCommandline.length == 4){
-			System.out.println("test2");
 			String customerId = parsedCommandline[1];
 			try {
 				double posX = Float.parseFloat(parsedCommandline[2]);
@@ -165,7 +150,34 @@ public class CLUI {
 			}
 
 		}
-		System.out.println("test3");
+		
+		//communicates with client app to display the state
+		if (parsedCommandline[0].equals("displayState") && parsedCommandline.length == 1){
+			try {
+				clientApp.displayState();	
+			} catch (Exception e) {
+				System.out.println("an error occured, check the input");
+			}
+
+		}
+		
+		//communicates with client app to get the list of prices
+		if (parsedCommandline[0].equals("moveCustomer") && parsedCommandline.length == 4){
+			String customerId = parsedCommandline[1];
+			try {
+				double posX = Float.parseFloat(parsedCommandline[2]);
+				double posY = Float.parseFloat(parsedCommandline[3]);
+				GPSPosition gpsPosition = new GPSPosition(posX,posY);
+				if(clientApp.moveCustomer(customerId, gpsPosition)){
+					System.out.println("Customer succesfully moved");}
+				else{System.out.println("an error occured, check the input");}
+					
+			} catch (Exception e) {
+				System.out.println("an error occured, check the input");
+			}
+
+		}
+
 	}
 	
 
